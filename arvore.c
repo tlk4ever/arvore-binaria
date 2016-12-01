@@ -71,6 +71,21 @@ void imprimeArv(TArv *arv){
 
 
 }
+int pertence(TArv *arv, char ch){
+	return arv!=NULL && (arv->dado==ch || pertence(arv->esq,ch) || pertence(arv->dir,ch));
+}
+TArv* busca(TArv *arv, char ch){
+	if(arv==NULL) return arv;
+
+	if(arv->dado==ch) return arv;
+	TArv *aux;
+	aux = busca(arv->esq,ch);
+	if(aux==NULL){
+		aux = busca(arv->dir,ch);
+	}
+	return aux;
+}
+
 int main(void) {
 	TArv *arvx = criaVAzia();
 
